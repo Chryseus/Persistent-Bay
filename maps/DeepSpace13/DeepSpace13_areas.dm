@@ -20,6 +20,9 @@
 /area/maintenance/maint2
 	name = "Maintenance"
 
+/area/maintenance/maint3
+	name = "Deck 2 Maintenance"
+
 /area/engine/englobby
 	name="Engineering Lobby"
 
@@ -73,6 +76,9 @@ area/engine/engmain
 
 /area/security/checkpoint/C2
 	name = "\improper Security Checkpoint 2"
+
+/area/science/randd
+	name = "Research and Development"
 
 /area/command/hallway
 	name = "\improper Command Hallway"
