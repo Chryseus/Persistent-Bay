@@ -11,6 +11,21 @@
 /area/crew/forelounge
 	name = "Crew Lounge"
 
+/area/maintenance/maint1
+	name = "Maintenance"
+
+/area/maintenance/maint2
+	name = "Maintenance"
+
+/area/maintenance/maint2
+	name = "Maintenance"
+
+/area/engine/englobby
+	name="Engineering Lobby"
+
+area/engine/engmain
+	name="Main Engineering"
+
 /area/crew/forestorage
 	name = "Fore Storage"
 
