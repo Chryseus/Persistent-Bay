@@ -174,6 +174,7 @@
 			shuttle.name = desired_name
 			shuttle.ownertype = shuttle_type
 			shuttle.owner = locked_to
+			dock.status = 4
 			loc.loc.name = desired_name
 
 			if(shuttle_type == 1)
@@ -194,11 +195,11 @@
 		if(beacon.dimensions < shuttle.size)
 			to_chat(usr, "Dock is not big enough.")
 			return 1
-		beacon.status = 4
 		shuttle.short_jump(beacon.get_top_turf(), dock.get_top_turf())
-		dock.status = 2
+		dock.status = 2 // Set source dock open
+		dock.shuttle = null
 		dock = beacon
-		dock.status = 4
+		dock.status = 4 // Set destination dock occupied
 		dock.bridge = src
 		dock.shuttle = shuttle
 		shuttle.current_location = dock
