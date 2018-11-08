@@ -1,3 +1,5 @@
+// Turbolift ##############################
+
 /area/turbolift/Deck1L1
 	name = "Deck 1"
 /area/turbolift/Deck2L1
@@ -8,13 +10,20 @@
 /area/turbolift/Deck2L2
 	name = "Deck 2"
 
+// Crew ###################################
+
 /area/crew/forelounge
 	name = "Crew Lounge"
 
-/area/maintenance/maint1
-	name = "Maintenance"
+/area/crew/forestorage
+	name = "Fore Storage"
 
-/area/maintenance/maint2
+/area/crew/cryogenics
+	name="Cryogenics"
+
+// Maintenance ############################
+
+/area/maintenance/maint1
 	name = "Maintenance"
 
 /area/maintenance/maint2
@@ -23,14 +32,19 @@
 /area/maintenance/maint3
 	name = "Deck 2 Maintenance"
 
+/area/maintenance/maint4
+	name = "Maintenance"
+
+// Engineering ############################
+
 /area/engine/englobby
 	name="Engineering Lobby"
 
 area/engine/engmain
 	name="Main Engineering"
 
-/area/crew/forestorage
-	name = "Fore Storage"
+// Hallways ###############################
+
 
 /area/hallway/Deck1Hallway
 	name = "Deck 1 Hallway"
@@ -38,74 +52,58 @@ area/engine/engmain
 /area/hallway/Deck2Hallway
 	name = "Deck 2 Hallway"
 
-/area/crew/cryogenics
-	name="Cryogenics"
+// Medical ################################
 
 /area/medical/chemistry
 	name = "Chemistry Lab"
 
-/area/medical/lobby
+/area/medical/medlobby
 	name = "Medical Lobby"
 
 /area/medical/surgery
 	name = "Operating Room 1"
 
-/area/medical/storage
+/area/medical/medstorage
 	name = "Medical Storage"
 
-/area/medical/central
+/area/medical/medcentral
 	name = "Medical Central Care"
 
 /area/medical/virologyholding
 	name = "Virology Holding"
 
-/area/medical/hallway
-	name = "\improper Medical Hallway"
+/area/medical/virology
+	name = "Virology"
 
-/area/arrivals
-	name = "\improper Arrivals"
+/area/medical/genetics
+	name = "Genetics"
 
-/area/security/armory
-	name = "\improper Security Armory"
+// Command ###############################
 
-/area/security/hall
-	name = "\improper Security Hall"
+/area/command/bridge
+	name = "Bridge"
 
-/area/security/checkpoint/C1
-	name = "\improper Security Checkpoint 1"
+/area/command/captainsquarters
+	name = "Captain's Quarters"
 
-/area/security/checkpoint/C2
-	name = "\improper Security Checkpoint 2"
+/area/command/assignmentoffice
+	name = "Assignment Office"
 
-/area/science/randd
-	name = "Research and Development"
+// Security ##############################
 
-/area/command/hallway
-	name = "\improper Command Hallway"
+/area/security/security
+	name = "Security"
 
-/area/command/captain
-	name = "\improper Captain's Office"
+/area/security/cell1
+	name = "Cell 1"
 
-/area/command/hop
-	name = "\improper Head of Personel's Office"
+// Supply ###############################
 
-/area/command/board
-	name = "\improper Command Meeting Room"
+/area/supply/cargo
+	name = "Supply Office"
 
-/area/command/storage
-	name = "\improper Command Storage"
+// Science ##############################
 
-/area/supply/hallway
-	name = "\improper Cargo Hallway"
+/area/science/rnd
+	name = "Research Office"
 
-/area/supply/processing
-	name = "\improper Cargo Processing"
-
-/area/supply/office
-	name = "\improper Cargo Office"
-
-/area/engine
-	name = "\improper Engineering"
-
-/area/engine/telecoms
-	name = "\improper Telecommunications"
