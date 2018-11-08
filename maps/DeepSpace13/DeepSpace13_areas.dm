@@ -43,6 +43,12 @@
 area/engine/engmain
 	name="Main Engineering"
 
+area/solars/solar1
+	name="Starboard Solars"
+
+area/solars/solar2
+	name="Port Solars"
+
 // Hallways ###############################
 
 
@@ -101,6 +107,9 @@ area/engine/engmain
 
 /area/supply/cargo
 	name = "Supply Office"
+
+/area/supply/dockingbay
+	name = "Docking Bay"
 
 // Science ##############################
 
