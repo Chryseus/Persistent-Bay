@@ -530,7 +530,7 @@ update_flag
 /obj/machinery/portable_atmospherics/bluespace/empty
 	start_pressure = 0
 	can_label = 1
-	var/obj/machinery/portable_atmospherics/canister/canister_type = /obj/machinery/portable_atmospherics/canister
+	var/obj/machinery/portable_atmospherics/bluespace/canister_type = /obj/machinery/portable_atmospherics/canister
 
 /obj/machinery/portable_atmospherics/bluespace/empty/New()
 	..()
