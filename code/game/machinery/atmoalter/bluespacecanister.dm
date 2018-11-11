@@ -1,4 +1,4 @@
-/obj/machinery/portable_atmospherics/bluespacecanister
+/obj/machinery/portable_atmospherics/bluespace
 	name = "\improper Bluespace Canister: \[CAUTION\]"
 	icon = 'icons/obj/atmos.dmi'
 	icon_state = "yellow"
@@ -27,14 +27,14 @@
 	var/upgrade_stack_type = /obj/item/stack/material/plasteel
 	var/upgrade_stack_amount = 20
 
-/obj/machinery/portable_atmospherics/canister/after_load()
+/obj/machinery/portable_atmospherics/bluespace/after_load()
 	..()
 	update_icon()
 
-/obj/machinery/portable_atmospherics/canister/drain_power()
+/obj/machinery/portable_atmospherics/bluespace/drain_power()
 	return -1
 
-/obj/machinery/portable_atmospherics/canister/proc/check_change()
+/obj/machinery/portable_atmospherics/bluespace/proc/check_change()
 	if(!air_contents)
 		return 1
 
@@ -60,7 +60,7 @@
 	else
 		return 0
 
-/obj/machinery/portable_atmospherics/canister/update_icon()
+/obj/machinery/portable_atmospherics/bluespace/update_icon()
 /*
 update_flag
 1 = holding
@@ -98,12 +98,12 @@ update_flag
 		overlays += "can-o3"
 	return
 
-/obj/machinery/portable_atmospherics/canister/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+/obj/machinery/portable_atmospherics/bluespace/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	if(exposed_temperature > temperature_resistance)
 		health -= 5
 		healthcheck()
 
-/obj/machinery/portable_atmospherics/canister/proc/healthcheck()
+/obj/machinery/portable_atmospherics/bluespace/proc/healthcheck()
 	if(destroyed)
 		return 1
 
@@ -125,7 +125,7 @@ update_flag
 	else
 		return 1
 
-/obj/machinery/portable_atmospherics/canister/Process()
+/obj/machinery/portable_atmospherics/bluespace/Process()
 	if (destroyed)
 		return
 	..()
@@ -155,7 +155,7 @@ update_flag
 
 	air_contents.react() //cooking up air cans - add phoron and oxygen, then heat above PHORON_MINIMUM_BURN_TEMPERATURE
 
-/obj/machinery/portable_atmospherics/canister/proc/handle_heat_exchange()
+/obj/machinery/portable_atmospherics/bluespace/proc/handle_heat_exchange()
 	if(istype(src.loc, /turf/space))
 		heat -= COSMIC_RADIATION_TEMPERATURE * CANISTER_HEAT_TRANSFER_COEFFICIENT
 		return
@@ -167,7 +167,7 @@ update_flag
 		healthcheck()
 
 
-/obj/machinery/portable_atmospherics/canister/proc/exchange_heat(var/datum/gas_mixture/environment)
+/obj/machinery/portable_atmospherics/bluespace/proc/exchange_heat(var/datum/gas_mixture/environment)
 	var/relative_density = (environment.total_moles/environment.volume) / (MOLES_CELLSTANDARD/CELL_VOLUME)
 	if(relative_density > 0.02) //don't bother if we are in vacuum or near-vacuum
 		var/loc_temp = environment.temperature
@@ -185,19 +185,19 @@ update_flag
 
 		temperature = QUANTIZE(heat / heat_capacity)
 
-/obj/machinery/portable_atmospherics/canister/proc/return_temperature()
+/obj/machinery/portable_atmospherics/bluespace/proc/return_temperature()
 	var/datum/gas_mixture/GM = src.return_air()
 	if(GM && GM.volume>0)
 		return GM.temperature
 	return 0
 
-/obj/machinery/portable_atmospherics/canister/proc/return_pressure()
+/obj/machinery/portable_atmospherics/bluespace/proc/return_pressure()
 	var/datum/gas_mixture/GM = src.return_air()
 	if(GM && GM.volume>0)
 		return GM.return_pressure()
 	return 0
 
-/obj/machinery/portable_atmospherics/canister/bullet_act(var/obj/item/projectile/Proj)
+/obj/machinery/portable_atmospherics/bluespace/bullet_act(var/obj/item/projectile/Proj)
 	if(!(Proj.damage_type == BRUTE || Proj.damage_type == BURN))
 		return
 
@@ -206,7 +206,7 @@ update_flag
 		healthcheck()
 	..()
 
-/obj/machinery/portable_atmospherics/canister/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
+/obj/machinery/portable_atmospherics/bluespace/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
 	if(!isWrench(W) && !istype(W, /obj/item/weapon/tank) && !istype(W, /obj/item/device/analyzer) && !istype(W, /obj/item/device/pda))
 		visible_message("<span class='warning'>\The [user] hits \the [src] with \a [W]!</span>")
 		src.health -= W.force
@@ -240,7 +240,7 @@ update_flag
 			user.visible_message("\The [src] has already been insulated.")
 	..()
 
-/obj/machinery/portable_atmospherics/canister/attackby(obj/item/W as obj, mob/user as mob)
+/obj/machinery/portable_atmospherics/bluespace/attackby(obj/item/W as obj, mob/user as mob)
 	if(isWelder(W) && src.destroyed)
 		var/obj/item/weapon/weldingtool/WT = W
 		if(WT.remove_fuel(0,user))
@@ -259,13 +259,13 @@ update_flag
 
 	SSnano.update_uis(src) // Update all NanoUIs attached to src
 
-/obj/machinery/portable_atmospherics/canister/attack_ai(var/mob/user as mob)
+/obj/machinery/portable_atmospherics/bluespace/attack_ai(var/mob/user as mob)
 	ui_interact(user)
 
-/obj/machinery/portable_atmospherics/canister/attack_hand(var/mob/user as mob)
+/obj/machinery/portable_atmospherics/bluespace/attack_hand(var/mob/user as mob)
 	ui_interact(user)
 
-/obj/machinery/portable_atmospherics/canister/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/portable_atmospherics/bluespace/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
 	// this is the data which will be sent to the ui
 	var/data[0]
 	data["name"] = name
@@ -288,7 +288,7 @@ update_flag
 		ui.open()
 		ui.set_auto_update(1)
 
-/obj/machinery/portable_atmospherics/canister/OnTopic(var/mob/user, href_list, state)
+/obj/machinery/portable_atmospherics/bluespace/OnTopic(var/mob/user, href_list, state)
 	if(href_list["toggle"])
 		if (valve_open)
 			if (holding)
@@ -347,7 +347,7 @@ update_flag
 		update_icon()
 		. = TOPIC_REFRESH
 
-/obj/machinery/portable_atmospherics/canister/CanUseTopic()
+/obj/machinery/portable_atmospherics/bluespace/CanUseTopic()
 	if(destroyed)
 		return STATUS_CLOSE
 	return ..()
@@ -355,13 +355,13 @@ update_flag
 //--------------------------------------------------------
 // N2O Canister
 //--------------------------------------------------------
-/obj/machinery/portable_atmospherics/canister/bluespace/sleeping_agent
+/obj/machinery/portable_atmospherics/bluespace/sleeping_agent
 	name = "\improper Canister: \[N2O\]"
 	icon_state = "redws"
 	canister_color = "redws"
 	can_label = 0
 
-/obj/machinery/portable_atmospherics/canister/bluespace/sleeping_agent/New()
+/obj/machinery/portable_atmospherics/bluespace/sleeping_agent/New()
 	..()
 	air_contents.adjust_gas("sleeping_agent", MolesForPressure())
 	src.update_icon()
@@ -369,13 +369,13 @@ update_flag
 //--------------------------------------------------------
 // N2 Canister
 //--------------------------------------------------------
-/obj/machinery/portable_atmospherics/canister/bluespace/nitrogen
+/obj/machinery/portable_atmospherics/bluespace/nitrogen
 	name = "\improper Canister: \[N2\]"
 	icon_state = "red"
 	canister_color = "red"
 	can_label = 0
 
-/obj/machinery/portable_atmospherics/canister/bluespace/nitrogen/New()
+/obj/machinery/portable_atmospherics/bluespace/nitrogen/New()
 	..()
 	src.air_contents.adjust_gas("nitrogen", MolesForPressure())
 	src.update_icon()
@@ -394,13 +394,13 @@ update_flag
 //--------------------------------------------------------
 // O2 Canister
 //--------------------------------------------------------
-/obj/machinery/portable_atmospherics/canister/bluespace/oxygen
+/obj/machinery/portable_atmospherics/bluespace/oxygen
 	name = "\improper Canister: \[O2\]"
 	icon_state = "blue"
 	canister_color = "blue"
 	can_label = 0
 
-/obj/machinery/portable_atmospherics/canister/bluespace/oxygen/New()
+/obj/machinery/portable_atmospherics/bluespace/oxygen/New()
 	..()
 	src.air_contents.adjust_gas("oxygen", MolesForPressure())
 	src.update_icon()
@@ -420,13 +420,13 @@ update_flag
 //--------------------------------------------------------
 // H2 Canister
 //--------------------------------------------------------
-/obj/machinery/portable_atmospherics/canister/bluespace/hydrogen
+/obj/machinery/portable_atmospherics/bluespace/hydrogen
 	name = "\improper Canister: \[Hydrogen\]"
 	icon_state = "purple"
 	canister_color = "purple"
 	can_label = 0
 
-/obj/machinery/portable_atmospherics/canister/bluespace/hydrogen/New()
+/obj/machinery/portable_atmospherics/bluespace/hydrogen/New()
 	..()
 	src.air_contents.adjust_gas("hydrogen", MolesForPressure())
 	src.update_icon()
@@ -434,13 +434,13 @@ update_flag
 //--------------------------------------------------------
 // Phoron Canister
 //--------------------------------------------------------
-/obj/machinery/portable_atmospherics/canister/bluespace/phoron
+/obj/machinery/portable_atmospherics/bluespace/phoron
 	name = "\improper Canister \[Phoron\]"
 	icon_state = "orange"
 	canister_color = "orange"
 	can_label = 0
 
-/obj/machinery/portable_atmospherics/canister/bluespace/phoron/New()
+/obj/machinery/portable_atmospherics/bluespace/phoron/New()
 	..()
 	src.air_contents.adjust_gas("phoron", MolesForPressure())
 	src.update_icon()
@@ -448,13 +448,13 @@ update_flag
 //--------------------------------------------------------
 // CO2 Canister
 //--------------------------------------------------------
-/obj/machinery/portable_atmospherics/canister/bluespace/carbon_dioxide
+/obj/machinery/portable_atmospherics/bluespace/carbon_dioxide
 	name = "\improper Canister \[CO2\]"
 	icon_state = "black"
 	canister_color = "black"
 	can_label = 0
 
-/obj/machinery/portable_atmospherics/canister/bluespace/carbon_dioxide/New()
+/obj/machinery/portable_atmospherics/bluespace/carbon_dioxide/New()
 	..()
 	src.air_contents.adjust_gas("carbon_dioxide", MolesForPressure())
 	src.update_icon()
@@ -462,13 +462,13 @@ update_flag
 //--------------------------------------------------------
 // Air Canister
 //--------------------------------------------------------
-/obj/machinery/portable_atmospherics/canister/bluespace/air
+/obj/machinery/portable_atmospherics/bluespace/air
 	name = "\improper Canister \[Air\]"
 	icon_state = "grey"
 	canister_color = "grey"
 	can_label = 0
 
-/obj/machinery/portable_atmospherics/canister/bluespace/air/New()
+/obj/machinery/portable_atmospherics/bluespace/air/New()
 	..()
 	var/list/air_mix = StandardAirMix()
 	src.air_contents.adjust_multi("oxygen", air_mix["oxygen"], "nitrogen", air_mix["nitrogen"])
@@ -527,42 +527,42 @@ update_flag
 //--------------------------------------------------------
 // Empty Canister
 //--------------------------------------------------------
-/obj/machinery/portable_atmospherics/canister/bluespace/empty
+/obj/machinery/portable_atmospherics/bluespace/empty
 	start_pressure = 0
 	can_label = 1
 	var/obj/machinery/portable_atmospherics/canister/canister_type = /obj/machinery/portable_atmospherics/canister
 
-/obj/machinery/portable_atmospherics/canister/bluespace/empty/New()
+/obj/machinery/portable_atmospherics/bluespace/empty/New()
 	..()
 	name = 	initial(canister_type.name)
 	icon_state = 	initial(canister_type.icon_state)
 	canister_color = 	initial(canister_type.canister_color)
 
-/obj/machinery/portable_atmospherics/canister/bluespace/empty/Initialize()
+/obj/machinery/portable_atmospherics/bluespace/empty/Initialize()
 	. = ..()
 	if(!map_storage_loaded)
 		name = 	initial(canister_type.name)
 		icon_state = initial(canister_type.icon_state)
 		canister_color = initial(canister_type.canister_color)
 
-/obj/machinery/portable_atmospherics/canister/bluespace/empty/air
+/obj/machinery/portable_atmospherics/bluespace/empty/air
 	icon_state = "grey"
-	canister_type = /obj/machinery/portable_atmospherics/canister/bluespace/air
-/obj/machinery/portable_atmospherics/canister/bluespace/empty/oxygen
+	canister_type = /obj/machinery/portable_atmospherics/bluespace/air
+/obj/machinery/portable_atmospherics/bluespace/empty/oxygen
 	icon_state = "blue"
-	canister_type = /obj/machinery/portable_atmospherics/canister/bluespace/oxygen
-/obj/machinery/portable_atmospherics/canister/bluespace/empty/phoron
+	canister_type = /obj/machinery/portable_atmospherics/bluespace/oxygen
+/obj/machinery/portable_atmospherics/bluespace/empty/phoron
 	icon_state = "orange"
-	canister_type = /obj/machinery/portable_atmospherics/canister/bluespace/phoron
-/obj/machinery/portable_atmospherics/canister/bluespace/empty/nitrogen
+	canister_type = /obj/machinery/portable_atmospherics/bluespace/phoron
+/obj/machinery/portable_atmospherics/bluespace/empty/nitrogen
 	icon_state = "red"
-	canister_type = /obj/machinery/portable_atmospherics/canister/bluespace/nitrogen
-/obj/machinery/portable_atmospherics/canister/bluespace/empty/carbon_dioxide
+	canister_type = /obj/machinery/portable_atmospherics/bluespace/nitrogen
+/obj/machinery/portable_atmospherics/bluespace/empty/carbon_dioxide
 	icon_state = "black"
-	canister_type = /obj/machinery/portable_atmospherics/canister/bluespace/carbon_dioxide
-/obj/machinery/portable_atmospherics/canister/bluespace/empty/sleeping_agent
+	canister_type = /obj/machinery/portable_atmospherics/bluespace/carbon_dioxide
+/obj/machinery/portable_atmospherics/bluespace/empty/sleeping_agent
 	icon_state = "redws"
-	canister_type = /obj/machinery/portable_atmospherics/canister/bluespace/sleeping_agent
-/obj/machinery/portable_atmospherics/canister/bluespace/empty/hydrogen
+	canister_type = /obj/machinery/portable_atmospherics/bluespace/sleeping_agent
+/obj/machinery/portable_atmospherics/bluespace/empty/hydrogen
 	icon_state = "purple"
-	canister_type = /obj/machinery/portable_atmospherics/canister/bluespace/hydrogen
+	canister_type = /obj/machinery/portable_atmospherics/bluespace/hydrogen
