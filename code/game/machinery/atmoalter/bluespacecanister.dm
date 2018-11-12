@@ -1,9 +1,9 @@
 /obj/machinery/portable_atmospherics/bluespace
 	name = "\improper Bluespace Canister: \[CAUTION\]"
-	icon = 'icons/obj/atmos.dmi'
+	icon = 'icons/obj/bluespace.dmi'
 	icon_state = "yellow"
 	density = 1
-	var/health = 100.0
+	var/health = 300.0
 	obj_flags = OBJ_FLAG_CONDUCTIBLE
 	w_class = ITEM_SIZE_GARGANTUAN
 
@@ -15,7 +15,7 @@
 	var/can_label = 1
 	start_pressure = 148 * ONE_ATMOSPHERE
 	var/temperature_resistance = 1000 + T0C
-	volume = 20000
+	volume = 200000
 	use_power = 0
 	interact_offline = 1 // Allows this to be used when not in powered area.
 	var/release_log = ""
