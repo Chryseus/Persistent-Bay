@@ -151,7 +151,7 @@
 
 /decl/hierarchy/supply_pack/atmospherics/bluespace_canister_air
 	name = "Gas Bluespace - Air Canister"
-	contains = list(/obj/machinery/portable_atmospherics/bluespace/air)
+	contains = list(/obj/machinery/portable_atmospherics/canister/bluespace/air)
 	cost = 200
 	containername = "Bluespace Air Canister Crate"
 	containertype = /obj/structure/largecrate
@@ -159,7 +159,7 @@
 
 /decl/hierarchy/supply_pack/atmospherics/bluespace_canister_oxygen
 	name = "Gas Bluespace - Oxygen Canister"
-	contains = list(/obj/machinery/portable_atmospherics/bluespace/oxygen)
+	contains = list(/obj/machinery/portable_atmospherics/canister/bluespace/oxygen)
 	cost = 300
 	containername = "Bluespace Oxygen Canister Crate"
 	containertype = /obj/structure/largecrate
@@ -167,7 +167,7 @@
 
 /decl/hierarchy/supply_pack/atmospherics/bluespace_canister_nitrogen
 	name = "Gas Bluespace - Nitrogen Canister"
-	contains = list(/obj/machinery/portable_atmospherics/bluespace/nitrogen)
+	contains = list(/obj/machinery/portable_atmospherics/canister/bluespace/nitrogen)
 	cost = 200
 	containername = "Bluespace Nitrogen Canister Crate"
 	containertype = /obj/structure/largecrate
@@ -175,7 +175,7 @@
 
 /decl/hierarchy/supply_pack/atmospherics/bluespace_canister_sleeping_agent
 	name = "Gas Bluespace - Nitrous Oxide Canister"
-	contains = list(/obj/machinery/portable_atmospherics/bluespace/sleeping_agent)
+	contains = list(/obj/machinery/portable_atmospherics/canister/bluespace/sleeping_agent)
 	cost = 800
 	containername = "Bluespace Nitrous Oxide Canister Crate"
 	containertype = /obj/structure/largecrate
@@ -183,7 +183,7 @@
 
 /decl/hierarchy/supply_pack/atmospherics/bluespace_canister_carbon_dioxide
 	name = "Gas Bluespace - Carbon Dioxide Canister"
-	contains = list(/obj/machinery/portable_atmospherics/bluespace/carbon_dioxide)
+	contains = list(/obj/machinery/portable_atmospherics/canister/bluespace/carbon_dioxide)
 	cost = 800
 	containername = "Bluespace Carbon Dioxide Canister Crate"
 	containertype = /obj/structure/largecrate
@@ -191,7 +191,7 @@
 
 /decl/hierarchy/supply_pack/atmospherics/bluespace_canister_hydrogen
 	name = "Gas Bluespace - Hydrogen Canister"
-	contains = list(/obj/machinery/portable_atmospherics/bluespace/hydrogen)
+	contains = list(/obj/machinery/portable_atmospherics/canister/bluespace/hydrogen)
 	cost = 200
 	containername = "Bluespace Hydrogen Canister Crate"
 	containertype = /obj/structure/largecrate
@@ -199,7 +199,7 @@
 
 /decl/hierarchy/supply_pack/atmospherics/bluespace_canister_phoron
 	name = "Gas Bluespace - Phoron Canister"
-	contains = list(/obj/machinery/portable_atmospherics/bluespace/phoron)
+	contains = list(/obj/machinery/portable_atmospherics/canister/bluespace/phoron)
 	cost = 1200
 	containername = "Bluespace Phoron Canister Crate"
 	containertype = /obj/structure/largecrate
