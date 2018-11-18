@@ -116,3 +116,8 @@ area/solars/solar2
 /area/science/rnd
 	name = "Research Office"
 
+// Asteroids ############################
+
+/area/asteroid/asteroid1
+	name = "Asteroid"
+	requires_power = 0
