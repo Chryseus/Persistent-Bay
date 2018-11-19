@@ -15,7 +15,13 @@
 	. = ..()
 /obj/machinery/portable_atmospherics/canister/bluespace/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	. = ..()
+/obj/machinery/portable_atmospherics/canister/bluespace/bullet_act(var/obj/item/projectile/Proj)
+	. = ..()
 /obj/machinery/portable_atmospherics/canister/bluespace/Process()
+	. = ..()
+/obj/machinery/portable_atmospherics/canister/bluespace/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
+	. = ..()
+/obj/machinery/portable_atmospherics/canister/bluespace/attackby(obj/item/W as obj, mob/user as mob)
 	. = ..()
 
 /obj/machinery/portable_atmospherics/canister/bluespace/OnTopic(var/mob/user, href_list, state)
@@ -164,10 +170,9 @@
 	src.update_icon()
 /obj/machinery/portable_atmospherics/canister/bluespace/air/init_air_content()
 	..()
-	src.air_contents.adjust_gas("air", MolesForPressure())
+	var/list/air_mix = StandardAirMix()
+	src.air_contents.adjust_multi("oxygen", air_mix["oxygen"], "nitrogen", air_mix["nitrogen"])
 	src.update_icon()
-
-
 
 /obj/machinery/portable_atmospherics/canister/bluespace/empty
 	start_pressure = 0
