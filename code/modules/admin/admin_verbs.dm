@@ -218,7 +218,8 @@ var/list/admin_verbs_debug = list(
 	/client/proc/cmd_analyse_health_panel,
 	/client/proc/visualpower,
 	/client/proc/visualpower_remove,
-	/datum/admins/proc/generate_beacon			//Generates the Nanotrasen faction beacon
+	/datum/admins/proc/generate_beacon,			//Generates the Nanotrasen faction beacon
+	/datum/admins/proc/faction_debug
 	)
 
 var/list/admin_verbs_paranoid_debug = list(

@@ -839,8 +839,8 @@ var/global/floorIsLava = 0
 					controller.timetostop = 0
 					controller.tone = choice2
 
-					
-/datum/admins/proc/fixemail()					
+
+/datum/admins/proc/fixemail()
 	set category = "Server"
 	set desc="Refactor Email accounts"
 	set name="Refactor Email accounts"
@@ -851,7 +851,7 @@ var/global/floorIsLava = 0
 		for(var/datum/computer_file/crew_record/record in GLOB.all_crew_records)
 			if(replacetext(record.get_name(), " ", "_") == account.login)
 				record.email = account
-	
+
 /datum/admins/proc/buildemail()
 	set category = "Server"
 	set desc="Build Email accounts"
@@ -884,9 +884,9 @@ var/global/floorIsLava = 0
 				record2.linked_account = record.linked_account
 				record2.linked_account.after_load()
 		if(!found)
-			recovering |= record	
+			recovering |= record
 	GLOB.all_crew_records |= recovering
-	
+
 /datum/admins/proc/autocryo()
 	set category = "Server"
 	set desc="Autocryo"
@@ -899,7 +899,7 @@ var/global/floorIsLava = 0
 		if(!H.loc) continue
 		cryo.occupant = H
 		cryo.despawnOccupant(1)
-					
+
 /datum/admins/proc/spacejunk()
 	set category = "Server"
 	set desc="Delete Space Junk"
@@ -919,8 +919,8 @@ var/global/floorIsLava = 0
 		if(found_lattice) continue
 		for(var/obj/ob in T.contents)
 			ob.loc = null
-			qdel(ob)					
-	
+			qdel(ob)
+
 /datum/admins/proc/retrieve_email()
 	set category = "Server"
 	set desc = "Retrieve Email"
@@ -937,7 +937,7 @@ var/global/floorIsLava = 0
 					return
 				to_chat(usr, "Account details: login:[record.email.login] password: [record.email.password]")
 				break
-			
+
 /datum/admins/proc/retrieve_account()
 	set category = "Server"
 	set desc ="Retrieve Money Account"
@@ -962,7 +962,7 @@ var/global/floorIsLava = 0
 					var/money = round(input("Enter money amount", "New amount") as num|null)
 					if(money)
 						record.linked_account.money = money
-					
+
 				else
 					message_admins("BROKEN ACCOUNT FOR [real_name] GENERATING")
 					record.linked_account = create_account(record.get_name(), 0, null)
@@ -970,8 +970,8 @@ var/global/floorIsLava = 0
 					record.linked_account = record.linked_account.after_load()
 					record.linked_account.money = 1000
 					to_chat(usr, "Account details: account number # [record.linked_account.account_number] pin # [record.linked_account.remote_access_pin]")
-					
-					
+
+
 /datum/admins/proc/buildaccounts()
 	set category = "Server"
 	set desc="Build Money accounts"
@@ -1443,6 +1443,21 @@ var/global/floorIsLava = 0
 	log_and_message_admins("toggled welder vision.")
 	feedback_add_details("admin_verb","TTWH") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
+/datum/admins/proc/faction_debug()
+	set category = "Debug"
+	set desc="Display faction info"
+	set name="Debug factions."
+
+	for(var/datum/world_faction/fac in GLOB.all_world_factions)
+		to_world("uid: [fac.uid]")
+		to_world("name: [fac.name]")
+		to_world("abbreviation: [fac.abbreviation]")
+		to_world("short_tag: [fac.short_tag]")
+		to_world("purpose: [fac.purpose]")
+		to_world("password: [fac.password]")
+		to_world("payrate: [fac.payrate]")
+
+
 /datum/admins/proc/toggleguests()
 	set category = "Server"
 	set desc="Guests can't enter"
@@ -1766,10 +1781,17 @@ datum/admins/var/obj/item/weapon/paper/admin/faxreply // var to hold fax replies
 	set category = "Debug"
 	set desc = "Spawn the Nanotrasen frontier beacon at (100,100,1)"
 	set name = "Generate Faction Beacon"
+	var/xpos = 0
+	var/ypos = 0
+	var/zpos = 0
 
-	new /obj/faction_spawner/Nanotrasen(locate(100,100,1))
+	xpos = text2num(input(usr,"Enter x position.","Position",null,null))
+	ypos = text2num(input(usr,"Enter y position.","Position",null,null))
+	zpos = text2num(input(usr,"Enter z position.","Position",null,null))
+
+	new /obj/faction_spawner/Nanotrasen(locate(xpos,ypos,zpos))
 	var/obj/structure/frontier_beacon/beacon
-	beacon = new /obj/structure/frontier_beacon(locate(100,100,1)) //
+	beacon = new /obj/structure/frontier_beacon(locate(xpos,ypos,zpos)) //
 	beacon.req_access_faction = "nanotrasen"
 	to_chat(usr, "<b>Frontier Beacon and faction_spawner (Nanotrasen) generated.)</b>")
 	return
