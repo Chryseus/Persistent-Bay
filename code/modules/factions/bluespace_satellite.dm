@@ -107,6 +107,16 @@ GLOBAL_LIST_EMPTY(all_docking_beacons)
 			user.visible_message("[user.name] unsecures [src.name] from the floor.", \
 				"You unsecure the [src.name] from the floor.", \
 				"You hear a ratchet")
+			// Reset when unsecured
+			shuttle = null
+			faction = 0
+			status = 0
+			dock_interior = 0
+			dimensions = 1
+			bridge = null
+			id = "docking port"
+			visible_mode = 0
+			faction = null
 		return
 
 	return ..()
@@ -305,7 +315,6 @@ GLOBAL_LIST_EMPTY(all_docking_beacons)
 	var/valid_bridge_computer_found = 0
 	var/bcomps = 0
 	var/list/engines = list()
-	var/name
 	var/obj/machinery/computer/bridge_computer/bridge
 	for(var/turf/T in turfs)
 		if(!istype(T.loc, /area/space))
@@ -334,21 +343,23 @@ GLOBAL_LIST_EMPTY(all_docking_beacons)
 		engine.permaanchor = 1
 	var/area/shuttle/A = new
 	A.name = "shuttle"
-	//var/ma
-	//ma = A.master ? "[A.master]" : "(null)"
 	A.power_equip = 0
 	A.power_light = 0
 	A.power_environ = 0
 	A.always_unpowered = 0
 	A.contents.Add(turfs)
 
-
-	shuttle = new(name, src)
+	shuttle = new()
+	shuttle.initial_location = src
+	shuttle.name = "Shuttle"
 	shuttle.size = dimensions
 	bridge.shuttle = shuttle
 	shuttle.shuttle_area = list(A)
 	shuttle.bridge = bridge
 	bridge.dock = src
+	shuttle.setup()
+	status = 4
+	to_chat(user, "Construction complete, finalize with bridge computer.")
 
 
 /obj/machinery/docking_beacon/proc/get_turfs()
