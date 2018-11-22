@@ -32,26 +32,30 @@
 		if(!user.unEquip(O, src))
 			return
 		beaker = O
+		user.drop_item()
+		O.loc = src
 
 		user.visible_message("[user] adds \a [O] to \the [src]!", "You add \a [O] to \the [src]!")
 		SSnano.update_uis(src)
 
-		src.attack_hand(user)
+//		src.attack_hand(user) // These have no purpose now.
 		return
 
 	if(istype(O, /obj/item/weapon/virusdish))
 
 		if(dish)
-			to_chat(user, "The dish tray is aleady full!")
+			to_chat(user, "The dish tray is already full!")
 			return
 		if(!user.unEquip(O, src))
 			return
 		dish = O
+		user.drop_item()
+		O.loc = src
 
 		user.visible_message("[user] adds \a [O] to \the [src]!", "You add \a [O] to \the [src]!")
 		SSnano.update_uis(src)
 
-		src.attack_hand(user)
+//		src.attack_hand(user) //This one gives a pointless attack message when adding the dish in.
 
 	if(default_deconstruction_screwdriver(user, O))
 		return

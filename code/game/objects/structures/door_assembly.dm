@@ -161,6 +161,7 @@ obj/structure/door_assembly/door_assembly_keyp
 			src.state = 2
 			src.name = "Near finished Airlock Assembly"
 			src.electronics = W
+			qdel(W)
 
 	else if(isCrowbar(W) && state == 2 )
 		//This should never happen, but just in case I guess
