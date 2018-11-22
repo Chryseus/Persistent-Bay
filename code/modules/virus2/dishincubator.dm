@@ -38,7 +38,7 @@
 		user.visible_message("[user] adds \a [O] to \the [src]!", "You add \a [O] to \the [src]!")
 		SSnano.update_uis(src)
 
-//		src.attack_hand(user) // These have no purpose now.
+		src.attack_hand(user)
 		return
 
 	if(istype(O, /obj/item/weapon/virusdish))
@@ -55,7 +55,7 @@
 		user.visible_message("[user] adds \a [O] to \the [src]!", "You add \a [O] to \the [src]!")
 		SSnano.update_uis(src)
 
-//		src.attack_hand(user) //This one gives a pointless attack message when adding the dish in.
+		src.attack_hand(user)
 
 	if(default_deconstruction_screwdriver(user, O))
 		return
