@@ -26,20 +26,16 @@
 	heat_capacity = 10000
 	var/lava = 0
 
-/turf/simulated/floor/New(var/newloc, var/floortype)
-	..(newloc)
+/turf/simulated/floor/Initialize()
+	levelupdate()
+	if(!map_storage_loaded)
+		set_flooring(get_flooring_data(initial_flooring))
+	else if(flooring)
+		set_flooring(flooring)
+	else
+		make_plating()
 
-/turf/simulated/floor/Initialize(false, var/newloc, var/floortype)
-	if(!floortype && initial_flooring)
-		floortype = initial_flooring
-	if(floortype && !map_storage_loaded)
-		set_flooring(get_flooring_data(floortype))
-	if(map_storage_loaded)
-		get_flooring_data(null) // This is required to populate the flooring_types list
-		levelupdate()
-		if((type == /turf/simulated/floor/tiled || type == /turf/simulated/floor/airless) && flooring == null)
-			color = COLOR_GUNMETAL // Fix plating color
-	return ..()
+	. = ..()
 
 /turf/simulated/floor/ReplaceWithLattice()
 	var/resources = prior_resources
@@ -56,8 +52,6 @@
 
 /turf/simulated/floor/protects_atom(var/atom/A)
 	return (A.level <= 1 && !is_plating()) || ..()
-
-
 
 /turf/simulated/floor/proc/set_flooring(var/decl/flooring/newflooring)
 	make_plating(defer_icon_update = 1)
@@ -76,6 +70,7 @@
 	icon = base_icon
 	icon_state = base_icon_state
 	plane = PLATING_PLANE
+	color = initial(color)
 
 	if(flooring)
 		flooring.on_remove()
